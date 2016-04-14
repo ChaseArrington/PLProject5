@@ -2,6 +2,7 @@ Instructions for running the Parser
 
 The file to be parsed is "12 days of xmas.txt"
 The Parser itself is "XMAS_PLY.py"
+The parser is built in Python 3!
 To run:
 
 1) Navigate to the folder "Parser" in the command line
