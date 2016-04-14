@@ -35,7 +35,12 @@ public class ListComprehension {
         emp.add(e10);emp.add(e11);emp.add(e12);emp.add(e13);emp.add(e14);emp.add(e15);emp.add(e16);emp.add(e17);emp.add(e18);
         emp.add(e19);emp.add(e20);emp.add(e21);emp.add(e22);emp.add(e23);emp.add(e24);emp.add(e25);
 
+        System.out.println("select * from emp");
         emp.stream().forEach(e -> { System.out.println(e); });
+        System.out.println();
+        
+        System.out.println("select last name, hire date, title, salary from emp");
+        emp.stream().map(e -> Arrays.asList(e.get(1),e.get(4),e.get(6),e.get(7))).forEach(e -> { System.out.println(e); });
         System.out.println();
 
         System.out.println("select * from emp where salary <= 1500");
@@ -43,20 +48,20 @@ public class ListComprehension {
         System.out.println();
 
         System.out.println("select * from emp where title == Stock Clerk and salary >= 800");
-        emp.stream().filter(e -> (Integer)e.get(7) >= 800).filter(e -> e.get(6) == "Stock Clerk").forEach(e -> {System.out.println(e);});
+        emp.stream().filter(e -> (Integer)e.get(7) >= 800 && ((String)e.get(6)).equalsIgnoreCase("Stock Clerk")).forEach(e -> {System.out.println(e);});
         System.out.println();
 
-        System.out.println("select last name, first name from emp order by last name");
-        emp.stream().map(e -> e.get(1)).sorted().forEach(e -> {System.out.println(e);});
+        System.out.println("select ID, last name, first name from emp order by ID");
+        emp.stream().sorted((e,f) -> Integer.compare((int)e.get(0),(int)f.get(0)))
+                .map(e -> Arrays.asList(e.get(0),e.get(1), e.get(2))).forEach(e -> {System.out.println(e);});
         System.out.println();
 
         System.out.println("select * from emp order by last name");
+        emp.stream();
+        System.out.println();
 
-        //Comparator<List<Object>> byLastName = (e,f) -> e.compareTo(f);
-        //emp.stream().sorted(byLastName).forEach(e -> {System.out.println(e);});
+        System.out.println("");
+        emp.stream();
 
-        //emp.stream().map(e -> e.getValue());
-
-        //filter((e[3]) -> e.startsWith("A")).forEach(System.out::println);
     }
 }
