@@ -38,7 +38,7 @@ public class ListComprehension {
         System.out.println("select * from emp");
         emp.stream().forEach(e -> { System.out.println(e); });
         System.out.println();
-        
+
         System.out.println("select last name, hire date, title, salary from emp");
         emp.stream().map(e -> Arrays.asList(e.get(1),e.get(4),e.get(6),e.get(7))).forEach(e -> { System.out.println(e); });
         System.out.println();
@@ -56,8 +56,11 @@ public class ListComprehension {
                 .map(e -> Arrays.asList(e.get(0),e.get(1), e.get(2))).forEach(e -> {System.out.println(e);});
         System.out.println();
 
-        System.out.println("select * from emp order by last name");
-        emp.stream();
+        System.out.println("select last name, first name, title from emp where title == Sales Representative | Warehouse Manager order by salary");
+        emp.stream().sorted((e,f) -> Integer.compare((int)e.get(7),(int)f.get(7)))
+                .filter(e-> ((String)e.get(6)).equalsIgnoreCase("Sales Representative") | ((String)e.get(6))
+                        .equalsIgnoreCase("Warehouse Manager")).map(e -> Arrays.asList(e.get(1),e.get(2),e.get(6))).
+                forEach(e -> {System.out.println(e);});
         System.out.println();
 
         System.out.println("");
